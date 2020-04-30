@@ -23,7 +23,7 @@
         "tags": [
           "product"
         ],
-        "summary": "Add a product to the database",
+        "summary": "Add a product to the cart",
         "operationId": "product-add",
         "requestBody": {
           "description": "New user signing up",
@@ -58,7 +58,7 @@
         "tags": [
           "product"
         ],
-        "summary": "Get all products in database",
+        "summary": "Get all products in the cart",
         "operationId": "product-get-all",
         "responses": {
           "200": {
@@ -73,6 +73,50 @@
                         "$ref": "#/components/schemas/ProductSchema"
                       }
                     }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/order/checkout": {
+      "post": {
+        "tags": [
+          "order"
+        ],
+        "summary": "Calculate order total",
+        "operationId": "order-checkout",
+        "requestBody": {
+          "description": "Calculate order total",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                    "products": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ProductSchema"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order total calculated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "total": "number"
                   }
                 }
               }
