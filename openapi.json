@@ -97,13 +97,30 @@
           "content": {
             "application/json": {
               "schema": {
+                "type": "object",
                 "properties": {
-                    "products": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ProductSchema"
+                  "120P90": {
+                    "type": "object",
+                    "properties": {
+                      "sku": {
+                        "type": "string",
+                        "example": "120P90"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "Google Home"
+                      },
+                      "price": {
+                        "type": "number",
+                        "example": "49.99"
+                      },
+                      "quantity": {
+                        "type": "number",
+                        "example": 10
+                      }
                     }
                   }
+
                 }
               }
             }
@@ -144,7 +161,7 @@
           },
           "price": {
             "type": "number",
-            "example": 49.99
+            "example": "49.99"
           },
           "quantity": {
             "type": "number",
