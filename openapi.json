@@ -1,0 +1,127 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API Service",
+    "version": "1.0.0",
+    "description": "API Service endpoints"
+
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "product",
+      "description": "Products APIs"
+    }
+  ],
+  "paths": {
+    "/product/add": {
+      "post": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Add a product to the database",
+        "operationId": "product-add",
+        "requestBody": {
+          "description": "New user signing up",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DraftProductSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product was added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DraftProductSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/product/all": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Get all products in database",
+        "operationId": "product-get-all",
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProductSchema"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DraftProductSchema": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "example": "120P90"
+          },
+          "name": {
+            "type": "string",
+            "example": "Google Home"
+          },
+          "price": {
+            "type": "number",
+            "example": 49.99
+          },
+          "quantity": {
+            "type": "number",
+            "example": 10
+          }
+        }
+      },
+      "ProductSchema": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DraftProductSchema"
+          }
+        ],
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "5d7224d3b40b1a1a046697dd"
+          }
+        }
+      }
+    }
+  }
+}
