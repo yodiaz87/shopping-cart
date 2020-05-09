@@ -47,10 +47,3 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 * The `docker-compose` file has a volume attached to container to expose host directory to the container for writing logs.
 * Console messages are prettified
 * Each line in error log file is a stringified JSON.
-
-## Code files to see the logic that solve the problem and the unit tests.
-```
-src/controllers/order/checkout.ts
-__tests/controllers/checkout.test.ts
-```
-
